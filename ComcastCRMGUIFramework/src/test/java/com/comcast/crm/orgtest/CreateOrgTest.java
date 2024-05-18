@@ -4,6 +4,7 @@ package com.comcast.crm.orgtest;
  * @author Basavaraj
  */
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -14,6 +15,7 @@ import com.comcast.crm.objectrepositoryutility.HomePage;
 import com.comcast.crm.objectrepositoryutility.OrganizationInformationPage;
 import com.comcast.crm.objectrepositoryutility.OrganizationsPage;
 
+@Listeners(com.comcast.crm.generic.listenerutility.ListnerImpClass.class)
 public class CreateOrgTest extends BaseClass {
 	@Test(groups = "smokeTest")
 	public void createOrg() throws Throwable {
