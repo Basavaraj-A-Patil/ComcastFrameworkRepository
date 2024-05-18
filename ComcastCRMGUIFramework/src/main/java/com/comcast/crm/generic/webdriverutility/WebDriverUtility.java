@@ -2,6 +2,7 @@ package com.comcast.crm.generic.webdriverutility;
 
 import java.time.Duration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -105,6 +106,46 @@ public class WebDriverUtility {
 		handleDD(element).selectByIndex(index);
 	}
 
+	public void selectValueFromDropdownByValue(WebElement element, String value) {
+		handleDD(element).selectByValue(value);
+	}
+
+	public boolean verifyDDIsMultiSelectDD(WebElement element) {
+		boolean isMultiple = handleDD(element).isMultiple();
+		return isMultiple;
+	}
+
+	public void deSelectValueFromDropdownByValue(WebElement element, String value) {
+		handleDD(element).deselectByValue(value);
+	}
+
+	public void deSelectValueFromDropdownByVisibleText(WebElement element, String text) {
+		handleDD(element).deselectByVisibleText(text);
+	}
+
+	public void deSelectValueFromDropdownByIndex(WebElement element, int index) {
+		handleDD(element).deselectByIndex(index);
+	}
+
+	public void deSelectAllValueFromDropdown(WebElement element) {
+		handleDD(element).deselectAll();
+	}
+
+	public WebElement getFirstSelectedOptionFromDropdown(WebElement element) {
+		WebElement firstSelectedOption = handleDD(element).getFirstSelectedOption();
+		return firstSelectedOption;
+	}
+
+	public List<WebElement> getAllOptionsFromDropdown(WebElement element) {
+		List<WebElement> allOptions = handleDD(element).getOptions();
+		return allOptions;
+	}
+
+	public List<WebElement> getAllSelectedOptionsFromDropdown(WebElement element) {
+		List<WebElement> allSelectedOptions = handleDD(element).getAllSelectedOptions();
+		return allSelectedOptions;
+	}
+
 	public Actions handleMousehoverActions(WebDriver driver) {
 		Actions act = new Actions(driver);
 		return act;
@@ -126,19 +167,25 @@ public class WebDriverUtility {
 		handleMousehoverActions(driver).contextClick(element).perform();
 	}
 
-	public void scrollUntilElementIsVisible(WebDriver driver, WebElement element) {
+	public void dragAndDrop(WebDriver driver, WebElement srcElement, WebElement targetElement) {
+		handleMousehoverActions(driver).dragAndDrop(srcElement, targetElement);
+	}
+
+	public JavascriptExecutor javaScriptExecutorActions(WebDriver driver) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		return js;
+	}
+
+	public void scrollUntilElementIsVisible(WebDriver driver, WebElement element) {
+		javaScriptExecutorActions(driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
 	public void scrollByValue(WebDriver driver, int scrollValue) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0," + scrollValue + ")");
+		javaScriptExecutorActions(driver).executeScript("window.scrollBy(0," + scrollValue + ")");
 	}
 
 	public void scrollTo(WebDriver driver, int scrollValue) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0," + scrollValue + ")");
+		javaScriptExecutorActions(driver).executeScript("window.scrollTo(0," + scrollValue + ")");
 	}
 
 }

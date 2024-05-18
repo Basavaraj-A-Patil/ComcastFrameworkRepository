@@ -2,71 +2,60 @@
 <testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-05-16T17:15:59 IST" name="Default suite" finished-at="2024-05-16T17:17:06 IST" duration-ms="66721">
+  <suite started-at="2024-05-17T18:55:27 IST" name="Default suite" finished-at="2024-05-17T18:55:28 IST" duration-ms="1040">
     <groups>
-      <group name="regressionTest">
-        <method signature="CreateOrgTest.createOrgWithIndustryAndType()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" name="createOrgWithIndustryAndType" class="com.comcast.crm.orgtest.CreateOrgTest"/>
-        <method signature="CreateOrgTest.createOrgWithPhoneNumber()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" name="createOrgWithPhoneNumber" class="com.comcast.crm.orgtest.CreateOrgTest"/>
-      </group> <!-- regressionTest -->
-      <group name="smokeTest">
-        <method signature="CreateOrgTest.createOrg()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" name="createOrg" class="com.comcast.crm.orgtest.CreateOrgTest"/>
-      </group> <!-- smokeTest -->
     </groups>
-    <test started-at="2024-05-16T17:15:59 IST" name="Default test" finished-at="2024-05-16T17:17:06 IST" duration-ms="66721">
-      <class name="com.comcast.crm.orgtest.CreateOrgTest">
-        <test-method is-config="true" signature="configBS()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:15:59 IST" name="configBS" finished-at="2024-05-16T17:15:59 IST" duration-ms="401" status="PASS">
+    <test started-at="2024-05-17T18:55:27 IST" name="Default test" finished-at="2024-05-17T18:55:28 IST" duration-ms="1040">
+      <class name="practice.test.DPOtherClassTest">
+        <test-method signature="dpTest(java.lang.String,java.lang.String)[pri:0, instance:practice.test.DPOtherClassTest@130c12b7]" started-at="2024-05-17T18:55:28 IST" name="dpTest" data-provider="getDataFromExcel" finished-at="2024-05-17T18:55:28 IST" duration-ms="16" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Allen]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Solly]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- configBS -->
-        <test-method is-config="true" signature="configBC()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:15:59 IST" name="configBC" finished-at="2024-05-16T17:16:02 IST" duration-ms="3041" status="PASS">
+        </test-method> <!-- dpTest -->
+        <test-method signature="dpTest(java.lang.String,java.lang.String)[pri:0, instance:practice.test.DPOtherClassTest@130c12b7]" started-at="2024-05-17T18:55:28 IST" name="dpTest" data-provider="getDataFromExcel" finished-at="2024-05-17T18:55:28 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Peter]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[England]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- configBC -->
-        <test-method is-config="true" signature="configBM()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:03 IST" name="configBM" finished-at="2024-05-16T17:16:08 IST" duration-ms="5546" status="PASS">
+        </test-method> <!-- dpTest -->
+        <test-method signature="dpTest(java.lang.String,java.lang.String)[pri:0, instance:practice.test.DPOtherClassTest@130c12b7]" started-at="2024-05-17T18:55:28 IST" name="dpTest" data-provider="getDataFromExcel" finished-at="2024-05-17T18:55:28 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Van]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Huesen]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- configBM -->
-        <test-method signature="createOrg()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:08 IST" name="createOrg" finished-at="2024-05-16T17:16:22 IST" duration-ms="13944" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createOrg -->
-        <test-method is-config="true" signature="configAM()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:22 IST" name="configAM" finished-at="2024-05-16T17:16:24 IST" duration-ms="2207" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configAM -->
-        <test-method is-config="true" signature="configBM()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:24 IST" name="configBM" finished-at="2024-05-16T17:16:29 IST" duration-ms="4485" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configBM -->
-        <test-method signature="createOrgWithIndustryAndType()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:29 IST" name="createOrgWithIndustryAndType" finished-at="2024-05-16T17:16:44 IST" duration-ms="15014" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createOrgWithIndustryAndType -->
-        <test-method is-config="true" signature="configAM()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:44 IST" name="configAM" finished-at="2024-05-16T17:16:46 IST" duration-ms="2028" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configAM -->
-        <test-method is-config="true" signature="configBM()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:46 IST" name="configBM" finished-at="2024-05-16T17:16:50 IST" duration-ms="4616" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configBM -->
-        <test-method signature="createOrgWithPhoneNumber()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:16:50 IST" name="createOrgWithPhoneNumber" finished-at="2024-05-16T17:17:04 IST" duration-ms="13335" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createOrgWithPhoneNumber -->
-        <test-method is-config="true" signature="configAM()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:17:04 IST" name="configAM" finished-at="2024-05-16T17:17:06 IST" duration-ms="2025" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- configAM -->
-        <test-method is-config="true" signature="congigAC()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:17:06 IST" name="congigAC" finished-at="2024-05-16T17:17:06 IST" duration-ms="372" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- congigAC -->
-        <test-method is-config="true" signature="congigAS()[pri:0, instance:com.comcast.crm.orgtest.CreateOrgTest@2034b64c]" started-at="2024-05-16T17:17:06 IST" name="congigAS" finished-at="2024-05-16T17:17:06 IST" duration-ms="17" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- congigAS -->
-      </class> <!-- com.comcast.crm.orgtest.CreateOrgTest -->
+        </test-method> <!-- dpTest -->
+      </class> <!-- practice.test.DPOtherClassTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
