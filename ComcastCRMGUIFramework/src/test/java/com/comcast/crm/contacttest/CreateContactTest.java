@@ -2,6 +2,7 @@ package com.comcast.crm.contacttest;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -13,6 +14,7 @@ import com.comcast.crm.objectrepositoryutility.CreatingNewOrganizationPage;
 import com.comcast.crm.objectrepositoryutility.HomePage;
 import com.comcast.crm.objectrepositoryutility.OrganizationsPage;
 
+@Listeners(com.comcast.crm.generic.listenerutility.ListnerImpClass.class)
 public class CreateContactTest extends BaseClass {
 	@Test(groups = "smokeTest")
 	public void createContact() throws Throwable {
