@@ -62,7 +62,7 @@ public class ListnerImpClass implements ITestListener, ISuiteListener {
 		TakesScreenshot scr = (TakesScreenshot) UtilityClassObject.getDriver();
 		String filepath = scr.getScreenshotAs(OutputType.BASE64);
 		test.addScreenCaptureFromBase64String(filepath, testName + "_" + time);
-		UtilityClassObject.getTest().log(Status.FAIL, result.getMethod().getMethodName() + " ==> FAILED ");
+		UtilityClassObject.getTest().log(Status.FAIL, testName + " ==> FAILED ");
 	}
 
 	public void onTestSkipped(ITestResult result) {
