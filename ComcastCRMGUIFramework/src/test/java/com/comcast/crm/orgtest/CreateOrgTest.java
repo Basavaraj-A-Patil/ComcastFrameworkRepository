@@ -42,7 +42,7 @@ public class CreateOrgTest extends BaseClass {
 		boolean orgValue = actOrgHdrtxt.contains(orgName);
 		Assert.assertTrue(orgValue);
 		String actOrgName = oip.getOrgNameText().getText();
-		Assert.assertEquals(actOrgName, "FF");
+		Assert.assertEquals(actOrgName, orgName);
 		UtilityClassObject.getTest().log(Status.PASS, "Successfully Created " + orgName + " Organization");
 	}
 
