@@ -10,6 +10,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import com.comcast.crm.generic.databaseutility.DataBaseUtility;
 import com.comcast.crm.generic.fileutility.ExcelUtility;
@@ -36,11 +37,10 @@ public class BaseClass {
 		dbLib.getDbConnection();
 	}
 
-	// @Parameters("BROWSER")
 	@BeforeClass(alwaysRun = true)
 	public void configBC() throws Throwable {
 		// Launch Browser
-		String browser = fLib.getDataFromPropertiesFile("browser");
+		String browser = System.getProperty("browser", fLib.getDataFromPropertiesFile("browser"));
 		if (browser.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
 		} else if (browser.equalsIgnoreCase("firefox")) {
@@ -56,9 +56,9 @@ public class BaseClass {
 	@BeforeMethod(alwaysRun = true)
 	public void configBM() throws Throwable {
 		// Login to Application
-		String url = fLib.getDataFromPropertiesFile("url");
-		String username = fLib.getDataFromPropertiesFile("username");
-		String password = fLib.getDataFromPropertiesFile("password");
+		String url = System.getProperty("url", fLib.getDataFromPropertiesFile("url"));
+		String username = System.getProperty("username", fLib.getDataFromPropertiesFile("username"));
+		String password = System.getProperty("password", fLib.getDataFromPropertiesFile("password"));
 		LoginPage lp = new LoginPage(driver);
 		lp.loginToApp(url, username, password);
 	}

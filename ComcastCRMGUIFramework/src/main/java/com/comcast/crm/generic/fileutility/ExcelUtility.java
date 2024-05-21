@@ -17,8 +17,24 @@ public class ExcelUtility {
 		return data;
 	}
 
+	public String getDataFromExcelFile(String filePath, String sheetName, int rowNum, int celNum) throws Throwable {
+		FileInputStream fis = new FileInputStream(filePath);
+		Workbook wb = WorkbookFactory.create(fis);
+		String data = wb.getSheet(sheetName).getRow(rowNum).getCell(celNum).getStringCellValue();
+		wb.close();
+		return data;
+	}
+
 	public int getRowCountOfSheet(String sheetName) throws Throwable {
 		FileInputStream fis = new FileInputStream("./testData/TestScriptData.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		int rowCount = wb.getSheet(sheetName).getLastRowNum();
+		wb.close();
+		return rowCount;
+	}
+
+	public int getRowCountOfSheet(String filPath, String sheetName) throws Throwable {
+		FileInputStream fis = new FileInputStream(filPath);
 		Workbook wb = WorkbookFactory.create(fis);
 		int rowCount = wb.getSheet(sheetName).getLastRowNum();
 		wb.close();
