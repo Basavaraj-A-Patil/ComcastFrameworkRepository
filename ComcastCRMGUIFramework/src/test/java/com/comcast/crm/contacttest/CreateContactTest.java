@@ -2,10 +2,12 @@ package com.comcast.crm.contacttest;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.Status;
 import com.comcast.crm.basetest.BaseClass;
 import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
 import com.comcast.crm.objectrepositoryutility.ContactInformationPage;
@@ -15,6 +17,7 @@ import com.comcast.crm.objectrepositoryutility.CreatingNewOrganizationPage;
 import com.comcast.crm.objectrepositoryutility.HomePage;
 import com.comcast.crm.objectrepositoryutility.OrganizationsPage;
 
+@Listeners(com.comcast.crm.generic.listenerutility.ListnerImpClass.class)
 public class CreateContactTest extends BaseClass {
 	@Test(groups = "smokeTest")
 	public void createContact() throws Throwable {
@@ -40,6 +43,8 @@ public class CreateContactTest extends BaseClass {
 		SoftAssert soft = new SoftAssert();
 		soft.assertEquals(actLastName, lastName);
 		soft.assertAll();
+		UtilityClassObject.getTest().log(Status.PASS, "successfully created " + lastName + " Contact");
+		Reporter.log("successfully created " + lastName + " Contact");
 	}
 
 	@Test(groups = "regressionTest")
@@ -77,6 +82,10 @@ public class CreateContactTest extends BaseClass {
 		// Verify Support End Date
 		String actEndDate = cip.getSupportEndDateTxt().getText();
 		Assert.assertEquals(actEndDate, endDate);
+		UtilityClassObject.getTest().log(Status.PASS, "successfully created " + lastName + " Contact with Start Date "
+				+ startDate + " and End date " + endDate);
+		Reporter.log("successfully created " + lastName + " Contact with Start Date " + startDate + " and End date "
+				+ endDate);
 
 	}
 
@@ -127,5 +136,8 @@ public class CreateContactTest extends BaseClass {
 		// Verify orgName
 		String actOrgName = cip.getOrgNamelnk().getText();
 		Assert.assertEquals(actOrgName, orgName);
+		UtilityClassObject.getTest().log(Status.PASS,
+				"successfully created " + lastName + " Contact with Organization " + orgName);
+		Reporter.log("successfully created " + lastName + " Contact with Organization " + orgName);
 	}
 }

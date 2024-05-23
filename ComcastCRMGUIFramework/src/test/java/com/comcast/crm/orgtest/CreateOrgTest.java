@@ -4,6 +4,7 @@ package com.comcast.crm.orgtest;
  * @author Basavaraj
  */
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,7 @@ import com.comcast.crm.objectrepositoryutility.HomePage;
 import com.comcast.crm.objectrepositoryutility.OrganizationInformationPage;
 import com.comcast.crm.objectrepositoryutility.OrganizationsPage;
 
+@Listeners(com.comcast.crm.generic.listenerutility.ListnerImpClass.class)
 public class CreateOrgTest extends BaseClass {
 	@Test(groups = "smokeTest")
 	public void createOrg() throws Throwable {
@@ -43,6 +45,7 @@ public class CreateOrgTest extends BaseClass {
 		String actOrgName = oip.getOrgNameText().getText();
 		Assert.assertEquals(actOrgName, "FF");
 		UtilityClassObject.getTest().log(Status.PASS, "Successfully Created " + orgName + " Organization");
+		Reporter.log("Successfully Created " + orgName + " Organization");
 	}
 
 	@Test(groups = "regressionTest")
@@ -82,6 +85,8 @@ public class CreateOrgTest extends BaseClass {
 		Assert.assertEquals(actType, type);
 		UtilityClassObject.getTest().log(Status.PASS, "Successfully Created " + orgName + " Organization with "
 				+ industry + " industry and " + type + " type");
+		Reporter.log("Successfully Created " + orgName + " Organization with " + industry + " industry and " + type
+				+ " type");
 	}
 
 	@Test(groups = "regressionTest")
@@ -115,5 +120,6 @@ public class CreateOrgTest extends BaseClass {
 		Assert.assertEquals(actPhoneNumber, phoneNumber);
 		UtilityClassObject.getTest().log(Status.PASS,
 				"Successfully Created " + orgName + " Organization with " + phoneNumber + " Phone Number ");
+		Reporter.log("Successfully Created " + orgName + " Organization with " + phoneNumber + " Phone Number ");
 	}
 }
