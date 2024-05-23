@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.comcast.crm.basetest.BaseClass;
+import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
 import com.comcast.crm.objectrepositoryutility.ContactInformationPage;
 import com.comcast.crm.objectrepositoryutility.ContactsPage;
 import com.comcast.crm.objectrepositoryutility.CreatingNewContactPage;
@@ -14,24 +15,23 @@ import com.comcast.crm.objectrepositoryutility.CreatingNewOrganizationPage;
 import com.comcast.crm.objectrepositoryutility.HomePage;
 import com.comcast.crm.objectrepositoryutility.OrganizationsPage;
 
-@Listeners(com.comcast.crm.generic.listenerutility.ListnerImpClass.class)
 public class CreateContactTest extends BaseClass {
 	@Test(groups = "smokeTest")
 	public void createContact() throws Throwable {
 		String lastName = eLib.getDataFromExcelFile("contact", 1, 2);
 
-		HomePage hp = new HomePage(driver);
+		HomePage hp = new HomePage(UtilityClassObject.getDriver());
 		hp.getContactLink().click();
 
-		ContactsPage cp = new ContactsPage(driver);
+		ContactsPage cp = new ContactsPage(UtilityClassObject.getDriver());
 		cp.getCreateContactImg().click();
 
 		// Create Contact
-		CreatingNewContactPage cncp = new CreatingNewContactPage(driver);
+		CreatingNewContactPage cncp = new CreatingNewContactPage(UtilityClassObject.getDriver());
 		cncp.createContact(lastName);
 
 		// Verify Contact Name
-		ContactInformationPage cip = new ContactInformationPage(driver);
+		ContactInformationPage cip = new ContactInformationPage(UtilityClassObject.getDriver());
 		String actHeaderText = cip.getHeaderTxt().getText();
 
 		boolean headerValue = actHeaderText.contains(lastName);

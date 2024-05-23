@@ -1,9 +1,11 @@
 package practice.test;
 
+import java.io.FileInputStream;
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import com.comcast.crm.generic.fileutility.ExcelUtility;
 
 public class DataProviderPracticeTest {
 
@@ -13,9 +15,18 @@ public class DataProviderPracticeTest {
 	}
 
 	@DataProvider
-	public Object[][] getDataFromExcel() throws Throwable, Throwable {
-		ExcelUtility eLib = new ExcelUtility();
-		Object[][] objArr = eLib.getDataFromDataProvider("DataProvider");
+	public Object[][] getDataFromExcel() throws Throwable {
+		FileInputStream fis = new FileInputStream("./testData/TestScriptData.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		int lastRowNum = wb.getSheet("DataProvider").getLastRowNum();
+		int lastCellNum = wb.getSheet("DataProvider").getRow(0).getLastCellNum();
+
+		Object[][] objArr = new Object[lastRowNum][lastCellNum];
+		for (int i = 0; i < lastRowNum; i++) {
+			for (int j = 0; j < lastCellNum; j++) {
+				objArr[i][j] = wb.getSheet("DataProvider").getRow(i+1).getCell(j).toString();
+			}
+		}
 		return objArr;
 	}
 }

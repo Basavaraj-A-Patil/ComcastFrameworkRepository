@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.testng.annotations.DataProvider;
 
 public class ExcelUtility {
 	public String getDataFromExcelFile(String sheetName, int rowNum, int celNum) throws Throwable {
@@ -53,15 +52,16 @@ public class ExcelUtility {
 	public Object[][] getDataFromDataProvider(String sheetName) throws Throwable, IOException {
 		FileInputStream fis = new FileInputStream("./testData/TestScriptData.xlsx");
 		Workbook wb = WorkbookFactory.create(fis);
-		int lastRowNum = wb.getSheet("DataProvider").getLastRowNum();
-		int lastCellNum = wb.getSheet("DataProvider").getRow(0).getLastCellNum();
+		int lastRowNum = wb.getSheet(sheetName).getLastRowNum();
+		int lastCellNum = wb.getSheet(sheetName).getRow(0).getLastCellNum();
 
 		Object[][] objArr = new Object[lastRowNum][lastCellNum];
 		for (int i = 0; i < lastRowNum; i++) {
 			for (int j = 0; j < lastCellNum; j++) {
-				objArr[i][j] = wb.getSheet("DataProvider").getRow(i + 1).getCell(j).toString();
+				objArr[i][j] = wb.getSheet(sheetName).getRow(i + 1).getCell(j).toString();
 			}
 		}
+		wb.close();
 		return objArr;
 	}
 }

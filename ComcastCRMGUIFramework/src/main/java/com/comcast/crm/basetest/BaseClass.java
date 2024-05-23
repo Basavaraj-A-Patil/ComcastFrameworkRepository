@@ -4,13 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
 
 import com.comcast.crm.generic.databaseutility.DataBaseUtility;
 import com.comcast.crm.generic.fileutility.ExcelUtility;
@@ -29,17 +29,18 @@ public class BaseClass {
 	public JavaUtility jLib = new JavaUtility();
 	public WebDriverUtility wLib = new WebDriverUtility();
 
-	public WebDriver driver = null;
+	public WebDriver driver;
 
 	@BeforeSuite(alwaysRun = true)
 	public void configBS() throws Throwable {
-		System.out.println("Connect to DB");
+		Reporter.log("Connect to DB", true);
 		dbLib.getDbConnection();
 	}
 
 	@BeforeClass(alwaysRun = true)
 	public void configBC() throws Throwable {
 		// Launch Browser
+		Reporter.log("Launch Browser", true);
 		String browser = System.getProperty("browser", fLib.getDataFromPropertiesFile("browser"));
 		if (browser.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
@@ -56,29 +57,33 @@ public class BaseClass {
 	@BeforeMethod(alwaysRun = true)
 	public void configBM() throws Throwable {
 		// Login to Application
+		Reporter.log("Login to App", true);
 		String url = System.getProperty("url", fLib.getDataFromPropertiesFile("url"));
 		String username = System.getProperty("username", fLib.getDataFromPropertiesFile("username"));
 		String password = System.getProperty("password", fLib.getDataFromPropertiesFile("password"));
-		LoginPage lp = new LoginPage(driver);
+		LoginPage lp = new LoginPage(UtilityClassObject.getDriver());
 		lp.loginToApp(url, username, password);
 	}
 
 	@AfterMethod(alwaysRun = true)
 	public void configAM() {
 		// Logout
-		HomePage hp = new HomePage(driver);
+		Reporter.log("Logout from app", true);
+		HomePage hp = new HomePage(UtilityClassObject.getDriver());
 		hp.logout();
 	}
 
 	@AfterClass(alwaysRun = true)
-	public void congigAC() {
+	public void configAC() {
 		// Close Browser
-		driver.quit();
+		Reporter.log("Close Browser", true);
+		UtilityClassObject.getDriver().quit();
 	}
 
 	@AfterSuite(alwaysRun = true)
-	public void congigAS() throws Throwable {
+	public void configAS() throws Throwable {
 		// Close DB connection
+		Reporter.log("Close DB connection", true);
 		dbLib.closeConnection();
 	}
 

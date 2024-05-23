@@ -1,14 +1,9 @@
 package com.comcast.crm.generic.listenerutility;
-/**
- * @author Basavaraj
- * Contains listener implementation methods to Configure the report and capture screenshots
- * 
- */
+
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -22,66 +17,54 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
 
 public class ListnerImpClass implements ITestListener, ISuiteListener {
-	public ExtentReports report;
-	public ExtentTest test;
 
-	public void onStart(ISuite suite) {
-		/* Report configuration */
-		String time = new Date().toString().replace(' ', '_').replace(':', '_');
-		ExtentSparkReporter spark = new ExtentSparkReporter("./AdvanceReport/report_"+time+".html");
-		spark.config().setDocumentTitle("CRM document");
-		spark.config().setReportName("CRM Report");
-		spark.config().setTheme(Theme.DARK);
+	ExtentReports report;
 
-		/* System Info */
-		report = new ExtentReports();
-		report.attachReporter(spark);
-		report.setSystemInfo("OS", "Windows-11");
+	@Override
+	public void onTestStart(ITestResult result) {
+		ExtentTest test = report.createTest(result.getMethod().getMethodName());
+		UtilityClassObject.setTest(test);
+		UtilityClassObject.getTest().log(Status.INFO,  result.getMethod().getMethodName()+" ==> Started");
 	}
 
-	public void onFinish(ISuite suite) {
-		/* Report Backup */
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		UtilityClassObject.getTest().log(Status.PASS,  result.getMethod().getMethodName()+" ==> Passed");
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		String date = new Date().toString().replace(' ', '_').replace(':', '_');
+		String testName = result.getMethod().getMethodName();
+		TakesScreenshot ts = (TakesScreenshot) UtilityClassObject.getDriver();
+		String filepath = ts.getScreenshotAs(OutputType.BASE64);
+		UtilityClassObject.getTest().addScreenCaptureFromBase64String(filepath,testName+"_"+date);
+		UtilityClassObject.getTest().log(Status.FAIL, testName+" ==> Failed");
+		UtilityClassObject.getTest().log(Status.FAIL, result.getThrowable());
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		UtilityClassObject.getTest().log(Status.SKIP,  result.getMethod().getMethodName()+" ==> Skipped");
+	}
+
+	@Override
+	public void onStart(ITestContext context) {
+		String date = new Date().toString().replace(' ', '_').replace(':', '_');
+		ExtentSparkReporter spark = new ExtentSparkReporter("./ExtentReports/executionReport_" + date + ".html");
+		spark.config().setDocumentTitle("V-Tiger");
+		spark.config().setReportName("CRM execution report");
+		spark.config().setTheme(Theme.DARK);
+
+		report = new ExtentReports();
+		report.attachReporter(spark);
+		report.setSystemInfo("OS", System.getProperty("os.name"));
+		report.setSystemInfo("OS Version", System.getProperty("os.version"));
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
 		report.flush();
 	}
 
-	public void onTestStart(ITestResult result) {
-		/* Create test inside extent report */
-		test = report.createTest(result.getMethod().getMethodName());
-		UtilityClassObject.setTest(test);
-		UtilityClassObject.getTest().log(Status.INFO, result.getMethod().getMethodName() + " ==> STARTED ");
-	}
-
-	public void onTestSuccess(ITestResult result) {
-		UtilityClassObject.getTest().log(Status.PASS, result.getMethod().getMethodName() + " ==> PASSED ");
-	}
-
-	public void onTestFailure(ITestResult result) {
-		/* Capture screenshot when script fails */
-		String testName = result.getMethod().getMethodName();
-		String time = new Date().toString().replace(' ', '_').replace(':', '_');
-		TakesScreenshot scr = (TakesScreenshot) UtilityClassObject.getDriver();
-		String filepath = scr.getScreenshotAs(OutputType.BASE64);
-		test.addScreenCaptureFromBase64String(filepath, testName + "_" + time);
-		UtilityClassObject.getTest().log(Status.FAIL, testName + " ==> FAILED ");
-	}
-
-	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-
-	}
 }

@@ -15,7 +15,6 @@ import com.comcast.crm.objectrepositoryutility.HomePage;
 import com.comcast.crm.objectrepositoryutility.OrganizationInformationPage;
 import com.comcast.crm.objectrepositoryutility.OrganizationsPage;
 
-@Listeners(com.comcast.crm.generic.listenerutility.ListnerImpClass.class)
 public class CreateOrgTest extends BaseClass {
 	@Test(groups = "smokeTest")
 	public void createOrg() throws Throwable {
@@ -23,26 +22,26 @@ public class CreateOrgTest extends BaseClass {
 		String orgName = eLib.getDataFromExcelFile("org", 1, 2) + jLib.getRandomNumber();
 
 		/* Navigate to Organizations Page */
-		HomePage hp = new HomePage(driver);
+		HomePage hp = new HomePage(UtilityClassObject.getDriver());
 		hp.getOrgLink().click();
 		UtilityClassObject.getTest().log(Status.INFO, "Navigated to Organizations Page");
 
 		/* Navigate to Create New Organizations Page */
-		OrganizationsPage op = new OrganizationsPage(driver);
+		OrganizationsPage op = new OrganizationsPage(UtilityClassObject.getDriver());
 		op.getCreateNewOrgBtn().click();
 		UtilityClassObject.getTest().log(Status.INFO, "Navigated to Create New Organizations Page");
 
 		/* Create organization */
-		CreatingNewOrganizationPage cnop = new CreatingNewOrganizationPage(driver);
+		CreatingNewOrganizationPage cnop = new CreatingNewOrganizationPage(UtilityClassObject.getDriver());
 		cnop.createOrg(orgName);
 
 		/* Verify orgName */
-		OrganizationInformationPage oip = new OrganizationInformationPage(driver);
+		OrganizationInformationPage oip = new OrganizationInformationPage(UtilityClassObject.getDriver());
 		String actOrgHdrtxt = oip.getHeaderMsg().getText();
 		boolean orgValue = actOrgHdrtxt.contains(orgName);
 		Assert.assertTrue(orgValue);
 		String actOrgName = oip.getOrgNameText().getText();
-		Assert.assertEquals(actOrgName, orgName);
+		Assert.assertEquals(actOrgName, "FF");
 		UtilityClassObject.getTest().log(Status.PASS, "Successfully Created " + orgName + " Organization");
 	}
 

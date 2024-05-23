@@ -11,17 +11,17 @@
       </run>
     </groups>
     <classes>
-      <class name="com.comcast.crm.contacttest.CreateContactTest">
+      <class name="com.comcast.crm.orgtest.CreateOrgTest">
         <methods>
           <include name="configBC"/>
           <include name="configBS"/>
-          <include name="congigAC"/>
-          <include name="congigAS"/>
-          <include name="createContact"/>
+          <include name="configAC"/>
+          <include name="configAS"/>
           <include name="configBM"/>
           <include name="configAM"/>
+          <include name="createOrg"/>
         </methods>
-      </class> <!-- com.comcast.crm.contacttest.CreateContactTest -->
+      </class> <!-- com.comcast.crm.orgtest.CreateOrgTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Smoke Suite] -->

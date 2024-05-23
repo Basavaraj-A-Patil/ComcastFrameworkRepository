@@ -4,38 +4,24 @@
   <listeners>
     <listener class-name="com.comcast.crm.generic.listenerutility.ListnerImpClass"/>
   </listeners>
-  <test thread-count="2" parallel="tests" name="Test-1(failed)">
+  <test thread-count="2" parallel="tests" name="TestRunner --&gt; 2(failed)">
+    <groups>
+      <run>
+        <include name="smokeTest"/>
+      </run>
+    </groups>
     <classes>
       <class name="com.comcast.crm.orgtest.CreateOrgTest">
         <methods>
-          <include name="congigAC"/>
-          <include name="congigAS"/>
           <include name="configBC"/>
           <include name="configBS"/>
-          <include name="createOrgWithPhoneNumber"/>
+          <include name="configAC"/>
+          <include name="configAS"/>
           <include name="configBM"/>
-          <include name="createOrgWithIndustryAndType"/>
           <include name="configAM"/>
           <include name="createOrg"/>
         </methods>
       </class> <!-- com.comcast.crm.orgtest.CreateOrgTest -->
     </classes>
-  </test> <!-- Test-1(failed) -->
-  <test thread-count="2" parallel="tests" name="Test-2(failed)">
-    <classes>
-      <class name="com.comcast.crm.contacttest.CreateContactTest">
-        <methods>
-          <include name="configBC"/>
-          <include name="configBS"/>
-          <include name="congigAC"/>
-          <include name="congigAS"/>
-          <include name="createContactWithDate"/>
-          <include name="createContact"/>
-          <include name="configBM"/>
-          <include name="configAM"/>
-          <include name="createContactWithOrg"/>
-        </methods>
-      </class> <!-- com.comcast.crm.contacttest.CreateContactTest -->
-    </classes>
-  </test> <!-- Test-2(failed) -->
+  </test> <!-- TestRunner -> 2(failed) -->
 </suite> <!-- Failed suite [Suite] -->
