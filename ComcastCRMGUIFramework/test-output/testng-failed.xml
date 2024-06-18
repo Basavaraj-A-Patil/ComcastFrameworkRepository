@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="2" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="com.comcast.crm.generic.listenerutility.ListnerImpClass"/>
-  </listeners>
-  <test thread-count="2" parallel="tests" name="TestRunner --&gt; 2(failed)">
-    <groups>
-      <run>
-        <include name="smokeTest"/>
-      </run>
-    </groups>
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.comcast.crm.orgtest.CreateOrgTest">
+      <class name="practice.test.Test2">
         <methods>
-          <include name="configBC"/>
-          <include name="configBS"/>
-          <include name="configAC"/>
-          <include name="configAS"/>
-          <include name="configBM"/>
-          <include name="configAM"/>
-          <include name="createOrg"/>
+          <include name="excelDataTest"/>
         </methods>
-      </class> <!-- com.comcast.crm.orgtest.CreateOrgTest -->
+      </class> <!-- practice.test.Test2 -->
     </classes>
-  </test> <!-- TestRunner -> 2(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

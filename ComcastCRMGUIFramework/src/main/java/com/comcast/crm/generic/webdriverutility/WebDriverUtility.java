@@ -188,4 +188,21 @@ public class WebDriverUtility {
 		javaScriptExecutorActions(driver).executeScript("window.scrollTo(0," + scrollValue + ")");
 	}
 
+	public boolean verifyTextOfElementEqualsExpectedText(WebElement element, String expectedText) {
+		String actText = element.getText();
+		if (actText.equalsIgnoreCase(expectedText)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean verifyTextOfElementContainsExpectedText(WebElement element, String expectedText) {
+		String actText = element.getText();
+		if (actText.contains(expectedText)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

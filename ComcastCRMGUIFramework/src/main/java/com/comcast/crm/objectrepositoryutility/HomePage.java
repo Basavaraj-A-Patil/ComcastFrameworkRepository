@@ -22,8 +22,19 @@ public class HomePage {
 	@FindBy(linkText = "Organizations")
 	private WebElement orgLink;
 
+	public WebElement getLeadsLink() {
+		return leadsLink;
+	}
+
+	public WebElement getSignOutlnk() {
+		return signOutlnk;
+	}
+
 	@FindBy(linkText = "Contacts")
 	private WebElement contactLink;
+	
+	@FindBy(linkText = "Leads")
+	private WebElement leadsLink;
 
 	@FindBy(xpath = "//img[contains(@src,\"themes/softed/images/user\")]")
 	private WebElement adminImg;
