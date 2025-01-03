@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import com.comcast.crm.generic.databaseutility.DataBaseUtility;
 import com.comcast.crm.generic.webdriverutility.WebDriverUtility;
 
 public class DemoTest {
@@ -25,5 +26,12 @@ public class DemoTest {
 		wLib.scrollUntilElementIsMiddleOfPage(driver, ele);
 		Thread.sleep(5000);
 		driver.quit();
+	}
+	
+	@Test
+	public void TestDB() throws Throwable {
+		DataBaseUtility db = new DataBaseUtility();
+		db.getDbConnection();
+		db.closeConnection();
 	}
 }

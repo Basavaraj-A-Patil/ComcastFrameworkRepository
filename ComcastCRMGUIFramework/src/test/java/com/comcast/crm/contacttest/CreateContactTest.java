@@ -31,8 +31,8 @@ public class CreateContactTest extends BaseClass {
 
 		// Create Contact
 		CreatingNewContactPage cncp = new CreatingNewContactPage(UtilityClassObject.getDriver());
-		cncp.createContact(lastName);
-
+		cncp.createContact(lastName);		
+		
 		// Verify Contact Name
 		ContactInformationPage cip = new ContactInformationPage(UtilityClassObject.getDriver());
 		String actHeaderText = cip.getHeaderTxt().getText();

@@ -1,9 +1,12 @@
 package com.comcast.crm.generic.listenerutility;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -24,12 +27,12 @@ public class ListnerImpClass implements ITestListener, ISuiteListener {
 	public void onTestStart(ITestResult result) {
 		ExtentTest test = report.createTest(result.getMethod().getMethodName());
 		UtilityClassObject.setTest(test);
-		UtilityClassObject.getTest().log(Status.INFO,  result.getMethod().getMethodName()+" ==> Started");
+		UtilityClassObject.getTest().log(Status.INFO, result.getMethod().getMethodName() + " ==> Started");
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		UtilityClassObject.getTest().log(Status.PASS,  result.getMethod().getMethodName()+" ==> Passed");
+		UtilityClassObject.getTest().log(Status.PASS, result.getMethod().getMethodName() + " ==> Passed");
 	}
 
 	@Override
@@ -38,14 +41,24 @@ public class ListnerImpClass implements ITestListener, ISuiteListener {
 		String testName = result.getMethod().getMethodName();
 		TakesScreenshot ts = (TakesScreenshot) UtilityClassObject.getDriver();
 		String filepath = ts.getScreenshotAs(OutputType.BASE64);
-		UtilityClassObject.getTest().addScreenCaptureFromBase64String(filepath,testName+"_"+date);
-		UtilityClassObject.getTest().log(Status.FAIL, testName+" ==> Failed");
+		UtilityClassObject.getTest().addScreenCaptureFromBase64String(filepath, testName + "_" + date);
+		UtilityClassObject.getTest().log(Status.FAIL, testName + " ==> Failed");
 		UtilityClassObject.getTest().log(Status.FAIL, result.getThrowable());
+
+		// to store in local
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File destination = new File("./screenshots/" + testName + "_" + date + ".png");
+		try {
+			FileHandler.copy(source, destination);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		UtilityClassObject.getTest().log(Status.SKIP,  result.getMethod().getMethodName()+" ==> Skipped");
+		UtilityClassObject.getTest().log(Status.SKIP, result.getMethod().getMethodName() + " ==> Skipped");
 	}
 
 	@Override

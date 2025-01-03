@@ -43,13 +43,13 @@ public class CreateOrgTest extends BaseClass {
 		boolean orgValue = actOrgHdrtxt.contains(orgName);
 		Assert.assertTrue(orgValue);
 		String actOrgName = oip.getOrgNameText().getText();
-		Assert.assertEquals(actOrgName, "FF");
+		Assert.assertEquals(actOrgName, orgName);
 		UtilityClassObject.getTest().log(Status.PASS, "Successfully Created " + orgName + " Organization");
 		Reporter.log("Successfully Created " + orgName + " Organization");
 	}
 
 	@Test(groups = "regressionTest")
-	public void createOrgWithIndustryAndType() throws Throwable {
+	public void createOrgWithIndustryAndType() throws Throwable {       
 		String orgName = eLib.getDataFromExcelFile("org", 1, 2) + jLib.getRandomNumber();
 		String industry = eLib.getDataFromExcelFile("org", 4, 4);
 		String type = eLib.getDataFromExcelFile("org", 4, 5);
