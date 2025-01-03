@@ -1,4 +1,5 @@
 package com.comcast.crm.objectrepositoryutility;
+
 /**
  * @author Basavaraj
  * contains Login Page Elements and loginToApp()
@@ -11,14 +12,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.comcast.crm.generic.webdriverutility.WebDriverUtility;
 
-public class LoginPage extends WebDriverUtility{
+public class LoginPage extends WebDriverUtility {
 	WebDriver driver;
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	@FindBy(name = "user_name")
 	private WebElement usernameEdt;
 
@@ -39,15 +40,17 @@ public class LoginPage extends WebDriverUtility{
 	public WebElement getLoginbtn() {
 		return Loginbtn;
 	}
-/**
- * Login to App based on arguments like url, username, and password provided
- * @param url
- * @param username
- * @param password
- * 
- */
+
+	/**
+	 * Login to App based on arguments like url, username, and password provided
+	 * 
+	 * @param url
+	 * @param username
+	 * @param password
+	 * 
+	 */
 	public void loginToApp(String url, String username, String password) {
-		waitForPageLoad(driver);
+		setImplicitWait(driver, 10);
 		maximizeWindow(driver);
 		driver.get(url);
 		usernameEdt.sendKeys(username);

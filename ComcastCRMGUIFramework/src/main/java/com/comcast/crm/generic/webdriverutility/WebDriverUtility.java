@@ -18,8 +18,8 @@ public class WebDriverUtility {
 		driver.manage().window().maximize();
 	}
 
-	public void waitForPageLoad(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+	public void setImplicitWait(WebDriver driver, int timeInSeconds) {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeInSeconds));
 	}
 
 	public WebDriverWait webDriverWait(WebDriver driver) {
@@ -39,6 +39,18 @@ public class WebDriverUtility {
 		webDriverWait(driver).until(ExpectedConditions.invisibilityOf(element));
 	}
 
+	public void waitForElementContainsExpectedText(WebDriver driver, WebElement element, String text) {
+		webDriverWait(driver).until(ExpectedConditions.textToBePresentInElement(element, text));
+	}
+	
+	public void waitUntilTitleContains(WebDriver driver, String title) {
+		webDriverWait(driver).until(ExpectedConditions.titleContains(title));
+	}
+	
+	public void waitUntilURLContains(WebDriver driver, String URL) {
+		webDriverWait(driver).until(ExpectedConditions.urlContains(URL));
+	}
+	
 	public void switchToTabOnURL(WebDriver driver, String partialUrl) {
 		Set<String> set = driver.getWindowHandles();
 		Iterator<String> it = set.iterator();
@@ -181,7 +193,11 @@ public class WebDriverUtility {
 	public void scrollUntilElementIsVisible(WebDriver driver, WebElement element) {
 		javaScriptExecutorActions(driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
-
+	
+	public void scrollUntilElementIsMiddleOfPage(WebDriver driver, WebElement element) {
+		javaScriptExecutorActions(driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'nearest'});", element);
+	}
+	
 	public void scrollByValue(WebDriver driver, int scrollValue) {
 		javaScriptExecutorActions(driver).executeScript("window.scrollBy(0," + scrollValue + ")");
 	}
