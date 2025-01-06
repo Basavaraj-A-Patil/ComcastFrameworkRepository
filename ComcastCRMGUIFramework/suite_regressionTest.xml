@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
@@ -13,3 +14,20 @@
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<groups>
+		<run>
+			<include name="regressionTest" />
+		</run>
+	</groups>
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="com.comcast.crm.contacttest.CreateContactTest" />
+			<class name="com.comcast.crm.orgtest.CreateOrgTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
+>>>>>>> branch 'master' of https://github.com/Basavaraj-A-Patil/ComcastFrameworkRepository

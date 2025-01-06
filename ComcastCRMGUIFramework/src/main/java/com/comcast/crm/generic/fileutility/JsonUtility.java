@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.comcast.crm.generic.fileutility;
 
 import java.io.FileReader;
@@ -15,3 +16,22 @@ public class JsonUtility {
 		return data;
 	}
 }
+=======
+package com.comcast.crm.generic.fileutility;
+
+import java.io.FileReader;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class JsonUtility {
+	public String getDataFromJsonFile(String key) throws Throwable {
+		FileReader fr = new FileReader("./configAppData/commonData.json");
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(fr);
+		JSONObject map = (JSONObject) obj;
+		String data = (String) map.get(key);
+		return data;
+	}
+}
+>>>>>>> branch 'master' of https://github.com/Basavaraj-A-Patil/ComcastFrameworkRepository

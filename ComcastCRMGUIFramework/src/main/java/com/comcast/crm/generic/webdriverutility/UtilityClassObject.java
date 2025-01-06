@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.comcast.crm.generic.webdriverutility;
 
 import org.openqa.selenium.WebDriver;
@@ -25,3 +26,32 @@ public class UtilityClassObject {
 	}
 
 }
+=======
+package com.comcast.crm.generic.webdriverutility;
+
+import org.openqa.selenium.WebDriver;
+
+import com.aventstack.extentreports.ExtentTest;
+
+public class UtilityClassObject {
+	public static ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
+	public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+
+	public static ExtentTest getTest() {
+		return test.get();
+	}
+
+	public static void setTest(ExtentTest actTest) {
+		test.set(actTest);
+	}
+
+	public static WebDriver getDriver() {
+		return driver.get();
+	}
+
+	public static void setDriver(WebDriver actdriver) {
+		driver.set(actdriver);
+	}
+
+}
+>>>>>>> branch 'master' of https://github.com/Basavaraj-A-Patil/ComcastFrameworkRepository
