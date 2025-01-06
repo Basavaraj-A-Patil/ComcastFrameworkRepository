@@ -10,5 +10,8 @@ public class Test2 {
 		ExcelUtility eLib = new ExcelUtility();
 		String data = eLib.getDataFromExcelFile("org", "TC001", "orgNumber");
 		System.out.println(data);
+		
+		data = eLib.getDataFromExcelFile("C:\\Users\\User\\Downloads\\Simpson_TestData_Sheet.xlsx", "Home", "HO005", "Header");
+		System.out.println(data);
 	}
 }
